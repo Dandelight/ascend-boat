@@ -29,5 +29,10 @@ make
 Run the sample:
 
 ```bash
-./tensor_add_sample
+python3.7.5 -m venv venv
+source ./venv/bin/activate
+pip install -U pip
+pip install ~/Ascend/ascend-toolkit/5.0.2.alpha005/fwkacllib/lib64/te-0.4.0-py3-none-any.whl ~/Ascend/ascend-toolkit/5.0.2.alpha005/fwkacllib/lib64/topi-0.4.0-py3-none-any.whl 
+pip install sympy
+./build/tensor_add_sample 
 ```
