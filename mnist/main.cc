@@ -54,6 +54,7 @@ int main() {
     return 1;
   }
 
+#if 0
   // prepare input
   std::vector<ms::MSTensor> outputs;
   std::vector<ms::MSTensor> inputs;
@@ -76,6 +77,7 @@ int main() {
       std::cout << p[i] << std::endl;
     }
   }
+#endif
 
   return 0;
 }
