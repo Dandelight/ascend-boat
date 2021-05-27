@@ -30,7 +30,7 @@
 namespace ms = mindspore;
 namespace ds = mindspore::dataset;
 constexpr auto resnet_file = "../model/resnet50_imagenet.mindir";
-constexpr auto image_path = "./test_data";
+constexpr auto image_path = "../test_data";
 
 std::vector<std::string> GetAllFiles(std::string_view dir_name);
 DIR *OpenDir(std::string_view dir_name);

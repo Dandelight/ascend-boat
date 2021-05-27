@@ -41,5 +41,13 @@ chmod 600 ~HwHiAiUser/swapfile
 mkswap ~HwHiAiUser/swapfile 
 swapon ~HwHiAiUser/swapfile 
 free -m  # Check if it works
+swapon -s
+```
+
+And config swap on boot:
+
+```bash
+$ sudo vim /etc/fstab
+/HwHiAiUser/swapfile swap swap defaults 0 0
 ```
 
