@@ -1,6 +1,9 @@
 extern "C" {
 #include "peripheral_api.h"
 }
+#include<fcntl.h>
+#include<unistd.h>
+#include<cstring>
 #include<cstdio>
 
 bool check_cam_ret(int ret) {
@@ -48,12 +51,16 @@ int main() {
 	}
 
 	activateCamera(cameraIds[0]);
-
+    memset(buf, 0, sizeof(buf));
 	ret = ReadFrameFromCamera(cameraIds[0], buf, &bufSize);
 	if(check_cam_ret(ret)) {
 		printf("I've fetched some data from camera!\n");
-		printf("Let's have a look:\n");
-		printf("%s", buf);
+		printf("Let's have it written to a file:\n");
+        int fd = open("image", O_WRONLY|O_CREAT, 644);
+        if(fd<0) {
+                perror("Could not open file");
+        }
+        write(fd, buf, bufSize);
 	}
 
 
