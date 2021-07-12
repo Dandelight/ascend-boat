@@ -27,3 +27,12 @@ PS：镜像来自：https://gitee.com/ascend/samples/wikis/Atlas200dk%E5%90%88%E
 
 
 执行`apt update && apt upgrade -y`后居然还能用。开心。
+
+TODO：安装`MindSpore`，把这个实现出来
+
+同时开始标注数据集
+
+https://www.mindspore.cn/tutorial/inference/zh-CN/r1.2/multi_platform_inference_ascend_310_mindir.html
+
+https://gitee.com/mindspore/docs/tree/r1.2/tutorials/tutorial_code/ascend310_resnet50_preprocess_sample
+
