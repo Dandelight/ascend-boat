@@ -32,15 +32,15 @@ https://support.huaweicloud.com/environment-deployment-Atlas200DK1010/atlased_04
 
 1. 合设环境[^2]镜像获取即刷写
 
-   1. 合设环境的获取见昇腾论坛，地址：TODO
-   2. 获取之后，下载安装[Balena Ether]()，将大于32G的TF卡插入读卡器，将下载的镜像（不必解压）刷进SD卡**刷入前请double check不要把其他U盘什么的刷了**
+   1. 合设环境的获取见昇腾论坛，地址：https://bbs.huaweicloud.com/forum/thread-139685-1-1.html 提取密码kjm7 https://pan.baidu.com/s/1Xyq08TCuCWUJuN1U6k5fug 
+   2. 获取之后，下载安装[Balena Ether](https://www.balena.io/etcher/)，将大于32G的TF卡插入读卡器，将下载的镜像（不必解压）刷进SD卡**刷入前请double check不要把其他U盘什么的刷了**
    3. 在Ubuntu下进入TF卡的目录（有三个分区，根目录挂载的分区），修改`/etc/netplan`，将有线方式`DHCP`置为`no`，[^dhcp]
    4. 在Ubuntu下打开`gparted`（也叫`disks`），找到TF卡，发现磁盘最后有一块灰色；调整最后一个分区的大小，扩充至整个磁盘大小；`Windows`用户可以使用`Disk Genius`完成同样操作。
    5. 将卡解除挂载弹出装入Atlas 200 DK
 
 2. 首次启动Atlas[^严格地说不算首次启动]
 
-   1. 建议[打开上盖](TODO)，观察板子右上角的四个黄色长方形LED灯，会看到四灯[^启动四灯]从左到右依次点亮，全亮后表示启动正常，
+   1. 建议[打开上盖](https://support.huaweicloud.com/environment-deployment-Atlas200DK1010/atlased_04_0004.html)，观察板子右上角的四个黄色长方形LED灯，会看到四灯[^启动四灯]从左到右依次点亮，全亮后表示启动正常，
 
    2. 确保刷写的TF卡已插入，使用网线将Atlas 200 DK与电脑接入同一局域网（电脑有线无线均可）。插入电源。
 
@@ -195,7 +195,7 @@ export PYTHONPATH=$HOME/samples/python/common/:$PYTHONPATH
 
 本仓库中两个样例来自https://gitee.com/mindspore/docs/tree/master/docs/sample_code ，即官方示例代码。
 
-**特别提醒**：一定要一步一步跟着做，不然出了奇怪的问题还找不到原因说的就是我
+**特别提醒**：一定要一步一步跟着做，不然出了奇怪的问题还找不到原因（没错说的就是我自己）
 
 ### 拓展
 
@@ -211,3 +211,4 @@ https://support.huaweicloud.com/peripheral_reference-Atlas200DK1010/atlaspd_07_0
 [^软件不升级]: 比如`VS Code`的`ssh`连不上
 
 [^CANN]: 华为的异构计算架构，可理解为`NVIDIA CUDA`的对标产品
+
