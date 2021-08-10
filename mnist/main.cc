@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 #include <iostream>
+#include <vector>
 #include "include/api/context.h"
 #include "include/api/model.h"
 #include "include/api/serialization.h"
 
 namespace ms = mindspore;
-constexpr auto tensor_add_file = "./tensor_add.mindir";
+constexpr auto tensor_add_file = "../model/mnist.mindir";
 static const std::vector<float> input_data_1 = {1, 2, 3, 4};
 static const std::vector<float> input_data_2 = {2, 3, 4, 5};
 
