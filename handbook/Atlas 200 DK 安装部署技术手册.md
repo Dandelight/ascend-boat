@@ -30,7 +30,7 @@ https://support.huaweicloud.com/environment-deployment-Atlas200DK1010/atlased_04
 
 ##### 民间方法
 
-1. 合设环境[^2]镜像获取即刷写
+1. 合设环境[^2]镜像获取以及刷写
 
    1. 合设环境的获取见昇腾论坛，地址：https://bbs.huaweicloud.com/forum/thread-139685-1-1.html 提取密码kjm7 https://pan.baidu.com/s/1Xyq08TCuCWUJuN1U6k5fug 
    2. 获取之后，下载安装[Balena Ether](https://www.balena.io/etcher/)，将大于32G的TF卡插入读卡器，将下载的镜像（不必解压）刷进SD卡**刷入前请double check不要把其他U盘什么的刷了**
