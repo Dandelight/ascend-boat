@@ -2,6 +2,8 @@
 
 ## 拿到板子之后
 
+升级软件
+
 ```shell
 su
 apt update && apt upgrade -y
@@ -27,11 +29,8 @@ apt update && apt upgrade -y
 
   - 如果未安装或者已安装其他版本的Python，可从[官网](https://www.python.org/ftp/python/3.7.5/Python-3.7.5.tgz)或者[华为云](https://mirrors.huaweicloud.com/python/3.7.5/Python-3.7.5.tgz)下载Python 3.7.5版本 64位，进行安装。
 
-- 确认安装Ascend 310 AI处理器配套软件包（[Ascend Data Center Solution 21.0.2]）。
+- 确认安装Ascend 310 AI处理器配套软件包
 
-  - 软件包安装方式请参考[产品文档]。
-  - 配套软件包包括[驱动和固件A300-3000]和[CANN 5.0.2]。
-  - 确认当前用户有权限访问Ascend 310 AI处理器配套软件包的安装路径`/usr/local/Ascend`，若无权限，需要root用户将当前用户添加到`/usr/local/Ascend`所在的用户组。
   - 安装Ascend 310 AI处理器配套软件包提供的whl包，whl包随配套软件包发布，升级配套软件包之后需要重新安装。
 
   ```bash
@@ -41,9 +40,15 @@ apt update && apt upgrade -y
 
 ## 下载软件包
 
+```shell
+wget https://gmplib.org/download/gmp/gmp-6.1.2.tar.xz
+```
+
 
 
 ## 安装`MindSpore`
+
+如果按照[./Atlas 200 DK 安装部署技术手册.md](./Atlas 200 DK 安装部署技术手册.md)执行，此时开发版中已安装了`Python 3.7.5`版本，并且`python3`就是这个版本；如果想使用`apt`安装的`python`，请使用`python3.6`命令。
 
 ### 编译安装`gmp`
 
@@ -72,25 +77,18 @@ cd /opt/cmake
 
 然后设置`PATH`。
 
-`MindSpore`
-
-参考[版本列表](https://www.mindspore.cn/versions)先进行SHA-256完整性校验，校验一致后再执行如下命令安装MindSpore。
+### 安装`MindSpore`
 
 ```
-wget https://ms-release.obs.cn-north-4.myhuaweicloud.com/{version}/MindSpore/ascend/{arch}/mindspore_ascend-{version}-linux_{arch}.tar.gz --no-check-certificate
-tar -zxf mindspore_ascend-{version}-linux_{arch}.tar.gz
+https://ms-release.obs.cn-north-4.myhuaweicloud.com/1.3.0/MindSpore/ascend/aarch64/mindspore_ascend-1.3.0-linux_aarch64.tar.gz --no-check-certificate
+tar -zxf mindspore_ascend-1.3.0-linux_aarch64.tar.gz
 ```
 
-其中：
+## 异常处理
 
-- `{version}`表示MindSpore版本号，例如安装1.3.0版本MindSpore时，`{version}`应写为1.3.0。
-- `{arch}`表示系统架构，例如使用的Linux系统是x86架构64位时，`{arch}`应写为`x86_64`。如果系统是ARM架构64位，则写为`aarch64`。
+```
+undefined symbol _Z14DlogErrorInneriPK
+```
 
-##
-
-【mindspore】【import erro】 undefined symbol _Z14DlogErrorInneriPK
-
-从当前报错信息上看，是环境上配套的软件包和MindSpore的版本不匹配，具体信息可以参考官网安装指导文档。
-
-https://www.mindspore.cn/install
+`MindSpore 1.3.0`动态链接了`libopt_feature.so`，这个文件只在`CANN 5.0.2.alpha005`中有，请按照[本文说明](./Atlas 200 DK 安装部署技术手册.md#更新软件)更新软件一节进行操作。
 

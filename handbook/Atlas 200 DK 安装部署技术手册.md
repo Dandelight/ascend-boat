@@ -44,7 +44,7 @@ https://support.huaweicloud.com/environment-deployment-Atlas200DK1010/atlased_04
 
    2. 确保刷写的TF卡已插入，使用网线将Atlas 200 DK与电脑接入同一局域网（电脑有线无线均可）。插入电源。
 
-   3. 打开路由器设置页，查看其IP地址（为了方便以下均==**假定**==为`192.168.0.104`，请根据实际情况替换）
+   3. 打开路由器设置页，查看其IP地址（为了方便以下均<span style="color: white; background-color: olive">**假定**</span>为`192.168.0.104`，请根据实际情况替换）
 
    4. 使用`ssh`登录开发板
 
@@ -112,6 +112,7 @@ chmod +x Ascend-cann-toolkit_5.0.2.alpha005_linux-aarch64.run
 此处附上一份我的环境变量（虽然可能也不全）
 
 ```bash
+###################### 默认设置
 export LD_LIBRARY_PATH=/usr/local/python3.7.5/lib:/home/HwHiAiUser/Ascend/acllib/lib64:/home/HwHiAiUser/ascend_ddk/arm/lib:$LD_LIBRARY_PATH
 export PATH=/usr/local/python3.7.5/bin:/home/HwHiAiUser/Ascend/ascend-toolkit/latest/atc/ccec_compiler/bin:/home/HwHiAiUser/Ascend/ascend-toolkit/latest/atc/bin:$PATH
 export PYTHONPATH=/home/HwHiAiUser/Ascend/ascend-toolkit/latest/pyACL/python/site-packages/acl:$PYTHONPATH
@@ -120,7 +121,6 @@ export ASCEND_OPP_PATH=/home/HwHiAiUser/Ascend/ascend-toolkit/latest/opp
 export DDK_PATH=$HOME/Ascend/ascend-toolkit/latest/arm64-linux
 
 export NPU_HOST_LIB=$DDK_PATH/acllib/lib64/stub
-
 
 export LD_LIBRARY_PATH=/home/HwHiAiUser/Ascend/acllib/lib64:$LD_LIBRARY_PATH
 export PYTHONPATH=/home/HwHiAiUser/Ascend/pyACL/python/site-packages/acl:$PYTHONPATH
@@ -137,7 +137,7 @@ export NPU_HOST_LIB=$DDK_PATH/acllib/lib64/stub
 # source /home/HwHiAiUser/Ascend/ascend-toolkit/5.0.2.alpha003/arm64-linux/toolkit/bin/setenv.bash
 source /home/HwHiAiUser/Ascend/ascend-toolkit/5.0.2.alpha005/arm64-linux/opp/bin/setenv.bash
 source /home/HwHiAiUser/Ascend/ascend-toolkit/5.0.2.alpha005/arm64-linux/toolkit/bin/setenv.bash
-######################
+###################### 自己加的设置
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/aicpu_kernels/0/aicpu_kernels_device/sand_box 
 export mindspore_path="/home/HwHiAiUser/mindspore_ascend-1.3.0-linux_aarch64"
 export LD_LIBRARY_PATH=${mindspore_path}:${LD_LIBRARY_PATH}
@@ -150,7 +150,7 @@ export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/HwHiAiUser/Ascend/driver"
 export PATH="${PATH}:/home/HwHiAiUser/ascend_ddk/arm/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/home/HwHiAiUser/ascend_ddk/arm/lib"
 
-######################
+###################### MindSpore设置
 
 # control log level. 0-DEBUG, 1-INFO, 2-WARNING, 3-ERROR, default level is WARNING.
 export GLOG_v=3
@@ -177,19 +177,25 @@ export PYTHONPATH=$HOME/samples/python/common/:$PYTHONPATH
 
 ### 基础样例：确定开发环境是否完善
 
+样例复制自`/home/HwHiAiUser/Ascend/pyACL/sample/acl_execute_op/acl_operator_add`，若成功执行[配置开发环境](#配置开发环境)可以找到这个目录。
 
+具体操作可见[../acl_operator_add/README.md](../acl_operator_add/README.md)
 
 ### 综合样例：确定可以正常运行模型
 
-昇腾Atlas 200 DK的样例在https://gitee.com/Ascend/samples，下载其`0.3`版本
+昇腾Atlas 200 DK的样例在https://gitee.com/Ascend/samples，本仓库中示例基于其`0.3`版本。
 
-```shell
-cd
-wget TODO
-cd samples
-```
+本仓库暂时没有相关样例，等我找找之前做过的贴进来。
 
-每一个
+如果复现几个样例都成功了，请仔细研读代码，同时去https://gitee.com/Ascend/samples 试试更多的样例。
+
+### `MindSpore`样例
+
+`MindSpore`提供了一系列高层API，对`AscendCL`、`DVPP`等进行了高度的封装，使用体验接近工作站版本的深度学习框架。
+
+本仓库中两个样例来自https://gitee.com/mindspore/docs/tree/master/docs/sample_code ，即官方示例代码。
+
+**特别提醒**：一定要一步一步跟着做，不然出了奇怪的问题还找不到原因说的就是我
 
 ### 拓展
 
@@ -204,40 +210,4 @@ https://support.huaweicloud.com/peripheral_reference-Atlas200DK1010/atlaspd_07_0
 
 [^软件不升级]: 比如`VS Code`的`ssh`连不上
 
-[^CANN]: 华为的异构计算架构，可理解为`NVIDIA CUDA`的地位
-[^]: 
-[^]: 
-
-
-
-## 附
-
-### `Python 3.7.5`的编译部署
-
-1. 获取源代码
-
-   前往华为云开源镜像站的[`Python`镜像](https://repo.huaweicloud.com/python/3.7.5/)下载[Python-3.7.5.tar.xz](https://repo.huaweicloud.com/python/3.7.5/Python-3.7.5.tar.xz)到开发板
-   
-   ```shell
-   wget https://repo.huaweicloud.com/python/3.7.5/Python-3.7.5.tar.xz
-   ```
-   
-2. 解压压缩包
-
-3. 安装依赖`sudo apt-get install -y gcc g++ make cmake unzip zlib1g zlib1g-dev libbz2-dev libsqlite3-dev openssl libssl-dev libxslt1-dev libffi-dev libncurses5-dev libncursesw5-dev gnome-keyring pciutils net-tools`
-
-4. ```shell
-   cd Python-3.7.5
-   sudo mkdir /usr/local/python3.7.5
-   ./configure --prefix=/usr/local/python3.7.5 --enable-loadable-sqlite-extensions --enable-shared
-   make -j8
-   sudo make install
-   ```
-
-5. ```shell
-   sudo cp /usr/local/python3.7.5/lib/libpython3.7m.so.1.0 /usr/lib64
-   # 若没有lib64文件夹，复制到lib文件夹
-   sudo cp /usr/local/python3.7.5/lib/libpython3.7m.so.1.0 /usr/lib
-   ```
-
-【未完成】
+[^CANN]: 华为的异构计算架构，可理解为`NVIDIA CUDA`的对标产品
